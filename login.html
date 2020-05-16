@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css\main.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+	
+
+    <!-- Title -->
+    <title>Log In</title>
+    
+    <script>
+			new WOW().init();
+    </script>
+    
+    <style>
+      #login .left-item {
+        display: none;
+      }
+
+      #login .right-item {
+        text-align: center;
+        padding: 30px;
+        box-shadow: 0px 8px 8px #888888;
+      }
+
+      #login .right-item p {
+        font-size: 10px;
+        margin-top: 15px;
+        margin-bottom: 0px;
+      }
+
+      @media only screen and (min-width:768px) {
+        #login .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          height: 80vh;
+        }
+
+        #login .container .left-item {
+          display: unset;
+          background-image: url("Images/Login/Image\ 1.jpg");
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        #login .container .right-item {
+          text-align: left;
+        }
+
+        #login .container .right-item p {
+          font-size: 16px;
+        }
+		
+		
+      }
+	  /* forgetpassword popup form*/
+		.form-popup {
+		  display: none;
+		  position: fixed;
+		  top: 180px;
+		  right: 385px;
+		  border: 3px solid #f1f1f1;
+		  z-index: 9;
+		}
+		.form-container {
+          padding: 10px;
+          box-shadow: 0px 8px 8px #888888;
+		  max-width: 350px;
+		  background-color: white;
+		}
+		#openform{
+			text-decoration: none;
+			color: blue;
+			cursor: pointer;
+		}
+		#openform:hover{
+			color: blue;
+			text-decoration: underline;
+		}
+    </style>
+  </head>
+
+  <body onload="renderTime()">
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+      <div class="container">
+        <a class="navbar-brand" href="home.html"><img src="Images/Horizontal Logo White.png" alt="Horizontal Logo White" style="width: 100px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Togglbe navigation"><span class="navbar-toggler-icon"></span></button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+            <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="food.html">Food <span class="sr-only">(current)</span></a></li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <div id="clockDisplay"></div>
+          <div><a id="greeting" href="profile.html"></a></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+    <section id="login" style="margin-top: 72px;">
+      <div class="container">
+        <div class="left-item">
+        </div>
+        <div class="right-item">
+          <h1>Sign In</h1>
+          <form action="login()" method="POST">
+            <div class="form-group">
+              <label for="matricNo">Matric No.</label>
+              <input type="text" class="form-control" id="matricNo" name="matricNo" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Log In">
+          </form>
+          <p>Forget password? <a id="openform" class="open-form" onclick="openForm()">Click here</a>.<br>Don't have an account? <a href="signup.html">Sign up now</a>!</p>
+        <div class="form-popup" id="myForm">
+		  <form action="forgetpassword.html" class="form-container">
+		    <h2>Forget password?</h2>
+		    <label for="email">Please enter your email</label>
+			<input type="email" placeholder="Enter Email" name="email" required><br><br>
+			<button class="btn" type="submit">Submit</button>
+			<button type="button" class="btn" onclick="closeForm()">Cancel</button>
+		   </form>
+		</div>
+		</div>
+		
+
+		
+      </div>
+    </section>
+		<script>
+		  function openForm() {
+		    document.getElementById("myForm").style.display = "block";
+		  }
+
+		  function closeForm() {
+		    document.getElementById("myForm").style.display = "none";
+		  }
+		</script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+	<!-- main css -->
+	<link href="css/main.css" rel='stylesheet' type='text/css' />
+	<script src="https://kit.fontawesome.com/f007a0b18a.js" crossorigin="anonymous"></script>
+
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="css/main.css" />
+
+	<!-- time js -->
+	<script src="js/time.js" type="text/javascript"></script>
+
+	<!--Animation-->
+	<script src="js/wow.min.js"></script>
+	<link href="css/animate.css" rel='stylesheet' type='text/css' />
+
+	<!-- animate init-->
+	<script>
+		new WOW().init();
+	</script>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+
+	<style>
+		/* @media screen and (min-height: 780px) {
+			footer {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+			}
+		} */
+
+		#updateProfile .right-item {
+			display: none;
+		}
+
+		#updateProfile .left-item {
+			text-align: left;
+			padding: 30px;
+			box-shadow: 0px 4px 8px #888888;
+			margin-top: 5%;
+			margin-bottom: 5%;
+		}
+
+		#updateProfile .left-item p {
+			font-size: 15px;
+			margin-top: 15px;
+			margin-bottom: 0px;
+		}
+
+		.site-container {
+			display: flex;
+			flex-direction: column;
+			min-height: 100vh;
+		}
+
+		.site-content {
+			flex: 1;
+		}
+	</style>
+
+	<!-- Title -->
+	<title>Update Profile</title>
+
+</head>
+
+<body onload="renderTime()">
+
+	<div class="site-container">
+		<!-- Navigation Bar -->
+		<header>
+			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+				<div class="container">
+					<a class="navbar-brand" href="home.html"><img src="Images/Horizontal Logo White.png"
+							alt="Horizontal Logo White" style="width: 100px;"></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse"
+						data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+						aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item">
+								<a class="nav-link" href="home.html">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="event.html">Event</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="report.html">Report</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="food.html">Food <span class="sr-only">(current)</span></a>
+							</li>
+						</ul>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+						<div id="clockDisplay"></div>
+						<div><a id="greeting" href="Profile.html"></a></div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<main class="site-content">
+			<!-- Update -->
+			<section id="updateProfile" style="margin-top: 12vh;">
+				<form method="POST">
+					<div class="container">
+						<div class="right-item">
+						</div>
+						<div class="left-item">
+							<h1>Update Profile</h1>
+
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input class="form-control" type="email" name="email">
+							</div>
+							<div class="form-group">
+								<label for="contact">Contact Number</label>
+								<input class="form-control" type="tel" name="contact">
+							</div>
+							<div class="form-group">
+								<label for="rc">Residential College</label>
+								<select class="form-control" id="rc">
+									<option>First Residential College</option>
+									<option>Second Residential College</option>
+									<option>Third Residential College</option>
+									<option>Fourth Residential College</option>
+									<option>Fifth Residential College</option>
+									<option>Sixth Residential College</option>
+									<option>Seventh Residential College</option>
+									<option>Eight Residential College</option>
+									<option>Ninth Residential College</option>
+									<option>Tenth Residential College</option>
+									<option>Eleventh Residential College</option>
+									<option>Twelfth Residential College</option>
+									<option>Outside Campus</option>
+								</select>
+							</div>
+
+							<input class="btn btn-primary" id="update-btn" type="submit" value="Save Update" />
+							<script>
+								var save_btn = document.querySelector("#update-btn");
+								save_btn.addEventListener("click", function popUp() {
+									alert("Your changes have been successfully saved!");
+								});
+							</script>
+							<a class="btn btn-primary" id="cancel-btn" href="profile.html" type="button"
+								value="Cancel">Cancel</a>
+							<div id="clockDisplay"></div>
+							<div id="greeting"></div>
+						</div>
+					</div>
+				</form>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div id="about">
+					<h4>About Us</h4>
+					<p>Online activity registration system (a.k.a OARS) allows students to discover and register for
+						popular
+						events in residential colleges of University of Malaya (UM). Besides, students are able to
+						report an
+						issue should they found at residential college and order food from the cafeterias using OARS.
+					</p>
+				</div>
+				<div id="service">
+					<h4>Services</h4>
+					<div id="service-container">
+						<a href="event.html"><button class="btn btn-primary">View Events</button></a>
+						<a href="report.html"><button class="btn btn-primary">Make report</button></a>
+						<a href="food.html"><button class="btn btn-primary">Order Food</button></a>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Title -->
+    <title>OARS</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <style>
+      #eventInfo ul {
+        list-style: none;
+      }
+
+      #eventInfo img {
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        max-width: 100%;
+        margin-bottom: 20px;
+      }
+
+      #eventInfo p {
+        text-align: justify;
+        margin-bottom: 20px;
+      }
+
+      #eventInfo .btn {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      @media only screen and (min-width: 768px) {
+        #eventInfo img {
+          max-width: 60%;
+        }
+      }
+    </style>
+
+    <script src="js/time.js"></script>
+    <script>
+      function signUp(){
+        var x = document.getElementById("signup");
+        if (x.innerHTML==="Sign Me Up") {
+          x.innerHTML= "Withdraw";
+        } else {
+          x.innerHTML= "Sign Me Up";
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="renderTime()">
+    <!-- Navigation Bar -->
+    <header>
+			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+				<div class="container">
+					<a class="navbar-brand" href="home.html"><img src="Images/Horizontal Logo White.png" alt="Horizontal Logo White" style="width: 100px;"></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Togglbe navigation"><span class="navbar-toggler-icon"></span></button>
+			
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+							<li class="nav-item active"><a class="nav-link" href="event.html">Event</a></li>
+							<li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+							<li class="nav-item"><a class="nav-link" href="food.html">Food <span class="sr-only">(current)</span></a></li>
+						</ul>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+						<div id="clockDisplay"></div>
+						<div><a id="greeting" href="profile.html"></a></div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+    <!-- Event Information -->
+    <section class="container" id="eventInfo" style="margin-top: 72px;margin-bottom: 20px;">
+      <h1>Turtle Run 2020</h1>
+      <hr>
+      <p>Turtle Run is a family-friendly event that involves road running with participants taking part for their own enjoyment, especially nature lovers! Although Turtle Run is a fun run mainly focused on spreading awareness, we also have exciting prizes waiting for the more competitive lot who manage to come out on top.</p>
+      <img id="eventImg" src="images/Event/TurtleRun.jpg" alt="Turtle Run">
+      <div style="overflow-x: auto;margin-bottom: 20px;">
+        <table class="table">
+          <tbody>
+              <tr>
+                <th>Organiser</th>
+                  <td>Fifth Residential College</td>
+              </tr>
+              <tr>
+                <th>Date</th>
+                  <td>1 January 2021</td>
+              </tr>
+              <tr>
+                <th>Venue</th>
+                  <td>University of Malaya</td>
+              </tr>
+              <tr>
+                <th>Time</th>
+                  <td>6:00AM - 11:00AM</td>
+              </tr>
+              <tr>
+                <th>Categories</th>
+                  <td>Sports</td>
+              </tr>
+              <tr>
+                <th>Website / Social Media</th>
+                  <td><a href="https://www.instagram.com/turtlerun19/">https://www.instagram.com/turtlerun19/</a></td>
+              </tr>
+          </tbody>
+        </table>
+        <p>For more enqueries, please contact the organizer at <a href="mailto:abc@gmail.com">abc@gmail.com</a> or <span>Ms. Lily (012-3456789)</span>.</p>
+      </div>
+      <button class="btn btn-primary" id="signup" onclick="signUp();">Sign Me Up</button>
+    </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div id="about">
+        <h4>About Us</h4>
+        <p>Online activity registration system (a.k.a OARS) allows students to discover and register for popular events in residential colleges of University of Malaya (UM). Besides, students are able to report an issue should they found at residential college and order food from the cafeterias using OARS.</p>
+      </div>
+      <div id="service">
+        <h4>Services</h4>
+        <div id="service-container">
+          <a href="event.html"><button class="btn btn-primary">View Events</button></a>
+          <a href="report.html"><button class="btn btn-primary">Make report</button></a>
+          <a href="food.html"><button class="btn btn-primary">Order Food</button></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

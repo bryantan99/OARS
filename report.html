@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css\main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Javacript -->
+    <script type="text/javascript" src="js/report.js"></script>
+    <script src="js/time.js"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Title -->
+    <title>Report</title>
+    <style>
+      /* Dashboard */
+      .dashboard .container .cc-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 20px;
+      }
+
+      .dashboard .container .cc-container .cc-item {
+        border-radius: 5px;
+        border: 1px solid rgb(204, 204, 204);
+        padding: 10px;
+      }
+
+      .dashboard .container .cc-container .cc-item h2,p {
+        margin: 0;
+        padding: 0;
+      }
+
+      .cc-item img {
+        display: none;
+        height: 64px;
+      }
+
+      /* Form & Table */
+      #saveButton {
+        display: none;
+      }
+      
+      .complaint-table {
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+
+      th {
+        vertical-align: middle !important; 
+      }
+
+      .complaint-table .container .selection-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+      }
+
+      .complaint-table .container .selection-container .selection-item {
+        text-align: center;
+        padding: 0px;
+        background-color: rgb(204, 204, 204);
+        cursor: pointer;
+      }
+
+      .complaint-table .container .selection-container .selection-item:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .complaint-table .container .selection-container .selection-item:nth-child(3) {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .complaint-table .container .selection-container .selection-item:hover {
+        background-color: rgb(173, 173, 173);
+      }
+
+      .complaint-table .container .selection-container .selection-item p {
+        margin: 0;
+      }
+
+      /* New Complaint */
+      .new-complaint {
+        text-align: left;
+        position: fixed;
+        top: 54%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgb(242, 242, 247);
+        max-width: 80%;
+        border-radius: 10px;
+        padding: 20px;
+        z-index: 20;
+      }
+
+      .new-complaint-header {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .new-complaint-header h4 {
+        padding: 0px;
+      }
+
+      .new-complaint-header .close-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
+        background: none;
+        margin-top: 5px;
+      }
+
+      #overlay {
+        position: fixed;
+        opacity: 0;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.8);
+        pointer-events: none;
+        transition: 200ms ease-in-out;
+      }
+
+      /* Page button */
+      .complaint-table .container .page-container {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 20px;
+        text-align: center;
+        border-radius: 10PX;
+      }
+
+      .complaint-table .container .page-container .page-item {
+        cursor: pointer;
+        padding: 10px;
+        background-color: rgb(204, 204, 204);
+      }
+
+      .complaint-table .container .page-container .page-item:hover {
+        background-color: rgb(173, 173, 173);
+      }
+
+      .complaint-table .container .page-container .page-item:nth-child(1) {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+
+      .complaint-table .container .page-container .page-item:nth-child(2) {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      .complaint-table .container .page-container p {
+        margin: 0px;
+      }
+
+      @media only screen and (min-width: 768px) {
+        .dashboard .container .cc-container .cc-item {
+          text-align: left;
+          padding-left: 20px;
+        }
+
+        .cc-item {
+          position: relative;
+        }
+
+        .cc-item img {
+          display: unset;
+          position: absolute;
+          margin: 0 auto;
+          left: 75%;
+          top: 12%;
+          opacity: 0.5;
+        }
+
+        table {
+          display: table;
+        }
+
+        .selection-container, .page-container {
+          width: 60%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      @media only screen and (min-width:1024px) {
+        .selection-container, .page-container {
+          width: 60%;
+        }
+      }
+    </style>
+  </head>
+
+<body onload="renderTime()">
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+      <div class="container">
+        <a class="navbar-brand" href="home.html"><img src="Images/Horizontal Logo White.png" alt="Horizontal Logo White" style="width: 100px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Togglbe navigation"><span class="navbar-toggler-icon"></span></button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+            <li class="nav-item active"><a class="nav-link" href="report.html">Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="food.html">Food <span class="sr-only">(current)</span></a></li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+          <div id="clockDisplay"></div>
+          <div><a id="greeting" href="profile.html"></a></div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Dashboard -->
+  <section class="dashboard" style="margin-top: 72px;">
+    <div class="container">
+      <h1>My Complaint<hr></h1>
+      <div class="cc-container">
+        <div class="cc-item" style="background-color: rgb(255, 204, 0);">
+          <h2 id="pendingCaseNo">0</h2>
+          <p>PENDING CASE</p>
+          <img src="Images/Report/pending.png" alt="Pending">
+        </div>
+        <div class="cc-item" style="background-color: rgb(52, 199, 89);">
+          <h2>0</h2>
+          <p>ONGOING CASE</p>
+          <img src="Images/Report/processing.png" alt="processing">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Complaint -->
+  <section class="complaint-table">
+    <!-- New, Generate Excel, Print -->
+    <div class="container">
+      <div class="selection-container">
+        <div class="selection-item" onclick="openCreateComplaint()">
+          <i class="fa fa-plus-square" aria-hidden="true"></i>
+          <p>New</p>
+        </div>
+        <div class="selection-item" onclick="exportTableToExcel('reportTable','My-Report')">
+          <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+          <p>Excel</p>
+        </div>
+        <div class="selection-item" onclick="display()">
+          <i class="fa fa-print" aria-hidden="true"></i>
+          <p>Print</p>
+        </div>
+      </div>
+      <!-- New Complaint Window -->
+      <div class="new-complaint container" id="new-complaint" style="display: none;">
+        <div class="new-complaint-header">
+          <h4 id="new-complaint-Title">New Complaint</h4>
+          <i onclick="closeCreateComplaint()" class="fa fa-times close-button" aria-hidden="true"></i>
+        </div>
+        <div class="new-complaint-body">
+          <form action="" id="complaintForm" onsubmit="return addRow();">
+            <div class="form-group">
+              <label for="kkhandler">Complaint To</label>
+              <select class="form-control" id="kkhandler" name="kkhandler">
+                <option>First Residential College</option>
+                <option>Second Residential College</option>
+                <option>Third Residential College</option>
+                <option>Fourth Residential College</option>
+                <option>Fifth Residential College</option>
+                <option>Sixth Residential College</option>
+                <option>Seventh Residential College</option>
+                <option>Eighth Residential College</option>
+                <option>Ninth Residential College</option>
+                <option>Tenth Residential College</option>
+                <option>Eleventh Residential College</option>
+                <option>Twelfth Residential College</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="category">Problem Category</label>
+              <select class="form-control" id="category" name="category">
+                <option>Category 1</option>
+                <option>Category 2</option>
+                <option>Category 3</option>
+                <option>Category 4</option>
+                <option>Category 5</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Problem Description</label>
+              <input type="text" class="form-control" id="description" name="description" required />
+            </div>
+            <div class="form-group">
+              <label for="contact">Contact No.</label>
+              <input type="text" class="form-control" name="contact" id="contact" required />
+            </div>
+            <div class="form-group">
+              <label for="photo">Attach Photo</label>
+              <input type="file" class="form-control-file" name="photo" id="photo">
+            </div>
+            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
+            <button type="button" class="btn btn-primary" id="saveButton" onclick="updateRow();">Save</button>
+          </form>
+        </div>
+      </div>
+      <div id="overlay"></div>
+      <br>
+      <!-- Report Table -->
+      <div class="report-table">
+        <input class="form-control" type="text" id="myInput" onkeyup="filter()" placeholder="Search for problem.."><br>
+        <form action="/action_page.php">
+          <table class="table table-hover" id="reportTable">
+            <thead>
+              <tr>
+                <th scope="col">Report No.</th>
+                <th scope="col">Problem</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Submitted</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </form>
+        <p>Showing 0 to 0 of 0 entries</p>
+        <!-- Previous, Next Page Button -->
+        <div class="page-container">
+          <div class="page-item"><p>Previous</p></div>
+          <div class="page-item"><p>Next</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div id="about">
+        <h4>About Us</h4>
+        <p>Online activity registration system (a.k.a OARS) allows students to discover and register for popular events in residential colleges of University of Malaya (UM). Besides, students are able to report an issue should they found at residential college and order food from the cafeterias using OARS.</p>
+      </div>
+      <div id="service">
+        <h4>Services</h4>
+        <div id="service-container">
+          <a href="event.html"><button class="btn btn-primary">View Events</button></a>
+          <a href="report.html"><button class="btn btn-primary">Make report</button></a>
+          <a href="food.html"><button class="btn btn-primary">Order Food</button></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

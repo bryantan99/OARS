@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css\main.css">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+
+    <!-- Title -->
+    <title>Sign Up</title>
+
+    <style>
+      #pw-status {
+        color: red;
+      }
+
+      @media only screen and (min-width: 768px) {
+        #signup .container {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap: 20px;
+        }
+
+        #signup .container h1 {
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+
+        #signup .container #signup-btn {
+          margin-top: 20px;
+          grid-column-start: 1;
+          grid-column-end: 3;
+        }
+      }
+    </style>
+
+    <script>
+      function verifyPassword() {
+        var pw = document.getElementById("password").value;
+        var rpw = document.getElementById("rpassword").value;
+        var status = document.getElementById("pw-match");
+        var result = document.getElementById('pw-result');
+        var lc = /[a-z]/;
+        var uc = /[A-Z]/;
+        var digit = /[0-9]/;
+        var satisfyCounter=0;
+        if (pw) {
+          if (pw.match(lc)) {
+            document.getElementById("lower-li").style.color="green";
+            satisfyCounter++;
+          } else {
+            document.getElementById("lower-li").style.color="black";
+          }
+          if (pw.match(uc)) {
+            document.getElementById("upper-li").style.color="green";
+            satisfyCounter++;
+          }else {
+            document.getElementById("upper-li").style.color="black";
+          }
+          if (pw.match(digit)) {
+            document.getElementById("digit-li").style.color="green";
+            satisfyCounter++;
+          }else {
+            document.getElementById("digit-li").style.color="black";
+          }
+          if (pw.length>=8) {
+            document.getElementById("length-li").style.color="green";
+            satisfyCounter++;
+          }else {
+            document.getElementById("length-li").style.color="black";
+          }
+        } else {
+          document.getElementById("lower-li").style.color="black";
+          document.getElementById("upper-li").style.color="black";
+          document.getElementById("digit-li").style.color="black";
+          document.getElementById("length-li").style.color="black";
+        }
+
+        if (satisfyCounter==4) {
+          var x = document.getElementById("pw-desc");
+          x.innerHTML = "Password is valid &#9989;";
+        } else {
+          var x = document.getElementById("pw-desc");
+          x.innerHTML = "Password must: &#10071;";
+        }
+
+        if (pw && rpw) {
+          if (pw===rpw) {
+            status.innerHTML = "Password matched &#9989;";
+            status.style.color = "green";
+          } else {
+            status.innerHTML = "Password not matched &#10060;";
+            status.style.color = "red";
+          }
+        } else {
+          status.innerHTML = "";
+        }
+      }
+    </script>
+  </head>
+
+  <body onload="renderTime()">
+    <!-- Navigation Bar -->
+    <header>
+			<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="background-color: #343a40;">
+				<div class="container">
+					<a class="navbar-brand" href="home.html"><img src="Images/Horizontal Logo White.png" alt="Horizontal Logo White" style="width: 100px;"></a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Togglbe navigation"><span class="navbar-toggler-icon"></span></button>
+			
+					<div class="collapse navbar-collapse" id="navbarSupportedContent">
+						<ul class="navbar-nav mr-auto">
+							<li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+							<li class="nav-item"><a class="nav-link" href="event.html">Event</a></li>
+							<li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
+							<li class="nav-item"><a class="nav-link" href="food.html">Food <span class="sr-only">(current)</span></a></li>
+						</ul>
+						<form class="form-inline my-2 my-lg-0">
+							<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+							<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+						</form>
+						<div id="clockDisplay"></div>
+						<div><a id="greeting" href="profile.html"></a></div>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+    <!-- Sign Up -->
+    <section id="signup" style="margin-top: 72px;">
+      <form action="/action_page.php" method="POST">
+        <div class="container">
+          <h1>Let's Get Started!</h1>
+          <div class="form-group">
+            <label for="name">Full Name (as per IC/Passport)</label>
+            <input class="form-control" type="text" name="name" required/>
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select class="form-control" id="gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input class="form-control" type="email" name="email" required/>
+          </div>
+          <div class="form-group">
+            <label for="rc">Residential College</label>
+            <select class="form-control" id="rc">
+              <option>First Residential College</option>
+              <option>Second Residential College</option>
+              <option>Third Residential College</option>
+              <option>Fourth Residential College</option>
+              <option>Fifth Residential College</option>
+              <option>Sixth Residential College</option>
+              <option>Seventh Residential College</option>
+              <option>Eight Residential College</option>
+              <option>Ninth Residential College</option>
+              <option>Tenth Residential College</option>
+              <option>Eleventh Residential College</option>
+              <option>Twelfth Residential College</option>
+              <option>Outside Campus</option>
+            </select>
+          </div>
+          <div class="form-group" style="grid-column-start: 1;grid-column-end: 3;">
+            <label for="matricNo.">Matric No.</label>
+            <input class="form-control" type="text" name="matricNo." required/>
+          </div>
+          <div class="form-group">
+            <label for="password">Enter password</label>
+            <input class="form-control" type="password" name="password" id="password" required oninput="verifyPassword()">
+            <p style="margin-top: 6px; margin-bottom: 0px;"><b id="pw-desc">Password must: &#10071;</b></p>
+            <ul style="margin-left: 20px;">
+              <li id="lower-li">Have at least one lowercase character.</li>
+              <li id="upper-li">Have at least one uppercase character.</li>
+              <li id="digit-li">Have at least one digit.</li>
+              <li id="length-li">At least 8 characters.</li>
+            </ul>
+          </div>
+          <div class="form-group">
+            <label for="rpassword">Repeat Password</label>
+            <input class="form-control" type="password" name="rpassword" id="rpassword" required  oninput="verifyPassword()"/>
+            <p style="margin-top: 6px; margin-bottom: 0px;" id="pw-match"></p>
+          </div>
+          <input class="btn btn-primary" id="signup-btn" type="submit" value="Sign Up"/>
+        </div>
+      </form>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
