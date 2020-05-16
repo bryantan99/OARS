@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+/* Reuse Things */
+/* Category Card */
+#rc-categoryCard h1 {
+  margin-bottom: 20px;
+}
+
+#rc-categoryCard .cc-item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+#rc-categoryCard .cc-item img {
+  width: 100%;
+}
+
+#rc-categoryCard .cc-item p {
+  position: absolute;
+  font-family: 'Courgette', cursive;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+  font-size: 16px;
+  top: 50%;
+  left: 35%;
+  transform: translate(-50%, -50%);
+}
+
+#clockDisplay,
+#greeting {
+  font-family: 'Courgette', cursive;
+  color: white;
+  margin: 0px auto;
+}
+
+/* Overlay - Used to cover section 1 in Home.html, Food.html & Event.html*/
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Navigation Bar----------------------------------------------------------------------------- Header */
+#greeting {
+  font-size: 20px;
+}
+
+/* Footer ------------------------------------------------------------------------------------ Footer   */
+footer {
+  background-color: #212529;
+  list-style-type: none;
+}
+
+footer .container p,
+a {
+  font-size: 14px;
+}
+
+footer .container {
+  padding: 30px;
+  color: white;
+}
+
+footer h4 {
+  color: orange;
+}
+
+footer p {
+  text-align: justify;
+}
+
+footer .container a {
+  color: white;
+}
+
+footer .container #service #service-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+}
+
+footer .container #developer p {
+  margin-bottom: 0px;
+}
+
+footer #service-container a {
+  text-decoration: none;
+  color: black;
+}
+
+footer .btn-primary {
+  color: black;
+  background-color: orange;
+  border-color: orange;
+}
+
+footer .btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+  color: black !important;
+  background-color: rgb(223, 145, 0) !important;
+  border-color: rgb(223, 145, 0) !important;
+}
+
+/* Media Queries */
+@media only screen and (min-width: 768px) {
+
+  /* Reused */
+  #rc-categoryCard .cc-item p {
+    font-size: 32px;
+  }
+
+  #rc-categoryCard .cc-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+  }
+
+  #rc-categoryCard .cc-item p {
+    font-size: 18px;
+  }
+
+  /* Footer */
+  footer .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 40px;
+  }
+
+  footer .container #service #service-container {
+    grid-column-gap: 3 0px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+
+  /* Reuse */
+  #rc-categoryCard .cc-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Profile */
+
+/* .profile-main-div {
+  padding-top: 9%;
+  padding-left: 3%;
+  padding-right: 3%;
+  min-height: 400px;
+  margin-bottom: 5%;
+  clear: both;
+}
+
+.profile-main-div .rounded-circle {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 1.25rem;
+} */

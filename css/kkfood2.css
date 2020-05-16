@@ -1,0 +1,92 @@
+/* see-cart start*/
+#see-cart{
+		font-size: 1em;
+        display: unset;
+        border-radius: 100px;
+        z-index: 999;
+        padding-top: 200px;
+        padding-bottom: 10px;
+        right: 5%;
+        position: fixed;
+        display: flex;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%)
+}
+/* see-cart end */
+
+/* search-bar start*/
+
+#middle-nav{
+	border-radius: 5px;
+	-moz-window-shadow: default;
+	border-color: transparent;
+	line-height: 54px;
+	text-align: center;
+}
+#middle-nav #search-bar{
+	line-height: 49px;
+	text-align: center;
+	padding: 0px 0px;
+	padding-top: 5px;
+}
+#middle-nav #search-bar .input-group{
+	/*border: 1px solid red;*/
+	 box-shadow: 0px 1px 3px 2px gainsboro;
+}
+
+#time-list{
+	-moz-window-shadow: default;
+	height: 38px;
+	text-align: center;
+	box-shadow: 0px 1px 3px 2px gainsboro;
+	padding:5px 5px 5px 5px;
+}
+/* search-bar end*/
+
+/* carouselExampleCaptions start*/
+#carousel-items{
+	z-index: -1;
+}
+#carousel-items .carousel-item img{
+	height: 440px;
+}
+
+@media only screen and (max-width: 768px){
+	#carouselExampleCaptions .carousel-inner .carousel-item img{
+		height: 300px;
+	}
+}
+
+/* carouselExampleCaptions end*/
+
+/* shop items start*/
+#shop-items #food-section .shop-item img{
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
+}
+#shop-items #food-section .shop-item .card-body{
+	position: relative;
+}
+#shop-items #food-section .shop-item .card-body .shop-item-price{
+	position: absolute;
+	bottom: 3px;
+}
+/* shop items end*/
+#cart-page{
+	position:fixed;
+	top: 54%;
+	left: 40%;
+	transform: translate(-50%, -50%);
+	background-color: rgb(242,242,247);
+	max-width: 100%;
+	min-width: 50%;
+	border-radius: 10px;
+	padding: 20px;
+	z-index: 99;
+}
+
+
+
